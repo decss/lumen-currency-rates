@@ -60,8 +60,3 @@ class CurrencyService
         return [];
     }
 }
-// <NumCode>036</NumCode>
-// <CharCode>AUD</CharCode>
-// <Nominal>1</Nominal>
-// <Name>Австралийский доллар</Name>
-// <Value>55,5393</Value>

@@ -13,22 +13,17 @@ class Currency extends Model
 
     protected $guarded = ['id'];
 
+    public function clearCurrencies(){
+        $self = new self();
+        $self::truncate();
+    }
+
     public function updateCurrencies($data)
     {
         $self = new self();
-        $self::truncate();
+        $inserted = $self->insert($data);
 
-        $cnt = [
-            'total' => count($data),
-            'created' => 0,
-        ];
-        foreach ($data as $item) {
-            if (is_array($item)) {
-                $self->create($item);
-                $cnt['created']++;
-            }
-        }
-        echo intval($cnt['created']) . ' of ' . intval($cnt['total']) . " currencies was updated\r\n";
+        return $inserted;
     }
 
 }

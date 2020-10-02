@@ -41,12 +41,26 @@ class CurrencyCommand extends Command
      */
     public function handle()
     {
+
         $service = new CurrencyService();
         $isLoad = $service->load();
-        if ($isLoad) {
-            $data = $service->getAllCurrencies();
-            (new Currency())->updateCurrencies($data);
-        }
+        echo "  - Data parsed\r\n";
 
+        if ($isLoad) {
+            $currency = new Currency();
+            $currency->clearCurrencies();
+            echo "  - Currency table was truncated\r\n";
+
+            $data = $service->getAllCurrencies();
+            $updated = $currency->updateCurrencies($data);
+
+            if ($updated) {
+                echo "  - Done: " . count($data) . " rows was inserted\r\n";
+            } else {
+                echo "  - Error: No rows was inserted\r\n";
+
+            }
+        }
     }
+
 }

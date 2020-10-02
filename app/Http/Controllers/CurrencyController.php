@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
+
 class CurrencyController extends Controller
 {
-    // http://www.cbr.ru/scripts/XML_daily.asp?date_req=02/10/2020
 
     public function index()
     {
-        dd(__METHOD__);
+        $currency = new Currency();
+        return $currency->all();
     }
 
     public function show($id)
     {
-        dd(__METHOD__, $id);
+        $currency = new Currency();
+        $result = $currency->find($id);
+        if (!$result) {
+            return abort(404);
+        }
+        return $result;
     }
 }

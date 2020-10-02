@@ -16,3 +16,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/currencies', 'CurrencyController@index');
+$router->get('/currencies/{id}', 'CurrencyController@show');

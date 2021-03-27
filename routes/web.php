@@ -13,9 +13,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get('/', ['as' => 'home', function () use ($router) {
     return view('index');
-});
+}]);
 
 $router->get('/currencies', ['as' => 'currencies', 'uses' => 'CurrencyController@index']);
 $router->get('/currencies/{id}', ['as' => 'currency', 'uses' => 'CurrencyController@show']);
+$router->get('/update', ['as' => 'update', 'uses' => 'CurrencyController@update']);
